@@ -1,0 +1,58 @@
+<app-slider [nombre]="'FORMULARIO'" [size]="'small'"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <h1 class="subheader">Formulario</h1>
+    
+    <form class="mid-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" 
+          required pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$"/>
+        <small *ngIf="!nombre.valid && nombre.touched">
+          El nombre no es válido</small>
+      </div>
+
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="user.apellidos" 
+        required pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$"/>
+        <small *ngIf="!apellidos.valid && apellidos.touched">
+          Los apellidos no son válidos</small>
+      </div>
+
+      <div class="form-group">
+        <label for="bio">Biografia</label>
+        <textarea name="bio" #bio="ngModel" [(ngModel)]="user.bio" required></textarea>
+        <small *ngIf="!bio.valid && bio.touched">
+          El campo de Biografía no es válido</small>
+      </div>
+
+      <div class="form-group radibuttons" >
+        <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)]="user.genero" required /> Hombre
+        <input type="radio" name="genero" value="mujer" #genero="ngModel" [(ngModel)]="user.genero" /> Mujer
+        <input type="radio" name="genero" value="otro" #genero="ngModel" [(ngModel)]="user.genero" /> Otro
+        <small *ngIf="!genero.valid && genero.touched">
+          El género no ha sido seleccionado</small>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <input type="submit" value="Enviar" class="btn btn-success" [disabled]="userForm.invalid"/>
+
+    </form>
+
+    <hr>
+    <!-- <h2 class="subheader">Eventos</h2>
+    <button (click)="hasClick()">Dale click!!!</button>
+    <br><br>
+    <input type="text" [(ngModel)]="campo" (blur)="hasSalido()">
+    {{campo}}
+    <br><br>
+    <input type="text" [(ngModel)]="campo2" (keyup.enter)="hasDadoEnter()"> -->
+    <br><br>
+
+  </section>
+
+  <app-sidebar></app-sidebar>
+</div>
