@@ -34,6 +34,6 @@ const appRoutes: Routes = [
 
 // Exportar modulos de rutas
 export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders<any> = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' });
 
 

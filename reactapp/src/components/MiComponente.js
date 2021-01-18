@@ -6,7 +6,6 @@ class MiComponente extends Component{
     return(
       <React.Fragment>
         <h1>Hola, soy el componente llamado : MiComponente.!</h1>
-        <h1>Hola, soy el componente llamado : MiComponente.!</h1><h1>Hola, soy el componente llamado : MiComponente.!</h1>
         <hr/>
 
       </React.Fragment>

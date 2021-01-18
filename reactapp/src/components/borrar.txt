@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class Articles extends Component {
+
+    state = {
+        articles: [],
+        status: null
+    }
+    // Cargar antes de mostrar nada.
+    componentWillUnmount() {
+        this.getArticles();
+    }
+
+    getArticles = () => {
+        axios.get('http://localhost:3900/api/articles')
+            .then(res => {
+                this.setState({
+                    articles: res.data.articles,
+                    status: 'success'
+                });
+                console.log(this.state);
+            });
+    }
+
+    render() {
+        if (this.state.articles.length >= 1) {
+
+            var listarArticles = this.state.articles.map((article) => {
+                return (
+                    <article className="article-item" id="article-template">
+                        <div className="image-wrap">
+                            <img src="" alt="" />
+                        </div>
+
+                        <h2>{article.title}</h2>
+                        <span className="date">{article.date}</span>
+                        <a href="#/">Leer más</a>
+
+                        <div className="clearfix"></div>
+                    </article>
+                )
+
+            })
+            return (
+                <div id="articles">
+                    {listarArticles}
+                </div>
+            )
+        } else if (this.state.articles.length === 0 && this.state.status === 'success') {
+            return (
+                <div id="articles">
+                    <h2 className="subheader">NO HAY ARTICULOS</h2>
+                    <p>Todavia no hay conetido en esta seccion </p>
+                </div>
+            )
+        } else {
+            return (
+                <div id="articles">
+                    <h2 className="subheader">CARGANDO</h2>
+                    <p>Espere mientras carga el contenido</p>
+                </div>
+            )
+        }
+
+
+    }
+}
+
+export default Articles;
